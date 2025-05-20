@@ -258,6 +258,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-<p align="center">
-  <i>Developed with ❤️ for a more sustainable AI future</i>
-</p>
