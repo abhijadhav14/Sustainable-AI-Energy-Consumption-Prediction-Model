@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainability Metrics - Sustainable AI Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css' ) }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Sustainable AI Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/sustainability">Sustainability Metrics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ethics">Ethical AI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/models">Models</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/documentation">Documentation</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Sustainability Metrics</h1>
+        
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>What Makes AI Sustainable?</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Sustainable AI encompasses multiple dimensions that ensure AI systems are developed and deployed responsibly:</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Environmental Sustainability</h5>
+                                        <ul>
+                                            <li>Energy efficiency in training and inference</li>
+                                            <li>Carbon footprint reduction</li>
+                                            <li>Resource optimization</li>
+                                            <li>Renewable energy integration</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Model Interpretability</h5>
+                                        <ul>
+                                            <li>Transparent decision-making</li>
+                                            <li>Explainable AI techniques</li>
+                                            <li>Feature importance analysis</li>
+                                            <li>Human-understandable outputs</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Fairness and Equity</h5>
+                                        <ul>
+                                            <li>Bias detection and mitigation</li>
+                                            <li>Demographic parity</li>
+                                            <li>Equal opportunity</li>
+                                            <li>Inclusive representation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Long-term Viability</h5>
+                                        <ul>
+                                            <li>Adaptable architectures</li>
+                                            <li>Maintainable codebases</li>
+                                            <li>Efficient resource usage</li>
+                                            <li>Continuous monitoring and improvement</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Model Sustainability Comparison</h5>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-outline-primary active" id="btnClimate">Climate</button>
+                            <button type="button" class="btn btn-outline-primary" id="btnEnergy">Energy</button>
+                            <button type="button" class="btn btn-outline-primary" id="btnHealthcare">Healthcare</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div id="sustainabilityChartContainer">
+                                    <img id="sustainabilityChart" class="img-fluid" alt="Sustainability Metrics Chart">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0">Sustainability Scores</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="sustainabilityScores">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Energy Efficiency:</span>
+                                                <span id="energyScore">-</span>
+                                            </div>
+                                            <div class="progress mb-3">
+                                                <div id="energyScoreBar" class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Carbon Efficiency:</span>
+                                                <span id="carbonScore">-</span>
+                                            </div>
+                                            <div class="progress mb-3">
+                                                <div id="carbonScoreBar" class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Interpretability:</span>
+                                                <span id="interpretabilityScore">-</span>
+                                            </div>
+                                            <div class="progress mb-3">
+                                                <div id="interpretabilityScoreBar" class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                                            </div>
+                                            
+                                            <div id="fairnessScoreContainer" class="d-none">
+                                                <div class="d-flex justify-content-between mb-2">
+                                                    <span>Fairness:</span>
+                                                    <span id="fairnessScore">-</span>
+                                                </div>
+                                                <div class="progress mb-3">
+                                                    <div id="fairnessScoreBar" class="progress-bar bg-success" role="progressbar" style="width: 0%"></div>
+                                                </div>
+                                            </div>
+                                            
+                                            <hr>
+                                            
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span><strong>Overall Score:</strong></span>
+                                                <span id="overallScore">-</span>
+                                            </div>
+                                            <div class="progress mb-3">
+                                                <div id="overallScoreBar" class="progress-bar bg-primary" role="progressbar" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5>Energy Consumption</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="energyMetricsContainer">
+                            <div class="row mb-3">
+                                <div class="col-8">
+                                    <h6>Training Energy Consumption</h6>
+                                    <p id="trainingEnergy">-</p>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div class="rounded-circle bg-primary d-flex align-items-center justify-content-center mx-auto" style="width: 60px; height: 60px;">
+                                        <i class="bi bi-lightning-charge-fill text-white fs-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-8">
+                                    <h6>Inference Energy Consumption</h6>
+                                    <p id="inferenceEnergy">-</p>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div class="rounded-circle bg-success d-flex align-items-center justify-content-center mx-auto" style="width: 60px; height: 60px;">
+                                        <i class="bi bi-cpu text-white fs-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <h6>Renewable Energy Percentage</h6>
+                                    <p id="renewablePercentage">-</p>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div class="rounded-circle bg-info d-flex align-items-center justify-content-center mx-auto" style="width: 60px; height: 60px;">
+                                        <i class="bi bi-wind text-white fs-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5>Carbon Footprint</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="carbonMetricsContainer">
+                            <div class="row mb-3">
+                                <div class="col-8">
+                                    <h6>Total Carbon Footprint</h6>
+                                    <p id="carbonFootprint">-</p>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <div class="rounded-circle bg-danger d-flex align-items-center justify-content-center mx-auto" style="width: 60px; height: 60px;">
+                                        <i class="bi bi-cloud-fill text-white fs-4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <h6>Equivalent to:</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card bg-light mb-2">
+                                                <div class="card-body py-2">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="bi bi-car-front me-2"></i>
+                                                        <span id="carEquivalent">-</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card bg-light mb-2">
+                                                <div class="card-body py-2">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="bi bi-lightbulb me-2"></i>
+                                                        <span id="lightbulbEquivalent">-</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h6>Carbon Reduction Strategies:</h6>
+                                    <ul>
+                                        <li>Use energy-efficient hardware</li>
+                                        <li>Optimize model architecture</li>
+                                        <li>Train with renewable energy</li>
+                                        <li>Implement early stopping</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Performance vs. Sustainability Trade-offs</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <img id="performanceChart" class="img-fluid" alt="Performance vs. Sustainability Chart">
+                            </div>
+                            <div class="col-md-4">
+                                <h6>Key Performance Metrics</h6>
+                                <div id="performanceMetrics">
+                                    <div id="regressionMetrics">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>RMSE:</span>
+                                            <span id="rmseValue">-</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>MAE:</span>
+                                            <span id="maeValue">-</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>R²:</span>
+                                            <span id="r2Value">-</span>
+                                        </div>
+                                    </div>
+                                    <div id="classificationMetrics" class="d-none">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Accuracy:</span>
+                                            <span id="accuracyValue">-</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Precision:</span>
+                                            <span id="precisionValue">-</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Recall:</span>
+                                            <span id="recallValue">-</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>F1 Score:</span>
+                                            <span id="f1Value">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <h6>Sustainability-Performance Balance</h6>
+                                <p>Our models demonstrate that sustainability and performance can be complementary rather than competing objectives. Through careful design and optimization, we achieve both high performance and strong sustainability metrics.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light text-center text-lg-start mt-5">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Sustainable AI Project</h5>
+                    <p>
+                        A demonstration platform for sustainable, ethical, and human-centric AI development
+                        across climate, energy, and healthcare domains.
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="/sustainability" class="text-dark">Sustainability Metrics</a></li>
+                        <li><a href="/ethics" class="text-dark">Ethical AI</a></li>
+                        <li><a href="/models" class="text-dark">Models</a></li>
+                        <li><a href="/documentation" class="text-dark">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Resources</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li><a href="#" class="text-dark">GitHub Repository</a></li>
+                        <li><a href="#" class="text-dark">API Documentation</a></li>
+                        <li><a href="#" class="text-dark">Research Paper</a></li>
+                        <li><a href="#" class="text-dark">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2025 Sustainable AI Project
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Load sustainability metrics for the selected domain
+        function loadSustainabilityMetrics(domain ) {
+            fetch(`/api/sustainability_metrics?domain=${domain}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update sustainability scores
+                    document.getElementById('energyScore').textContent = data.sustainability_scores.energy_efficiency.toFixed(1);
+                    document.getElementById('energyScoreBar').style.width = `${data.sustainability_scores.energy_efficiency}%`;
+                    
+                    document.getElementById('carbonScore').textContent = data.sustainability_scores.carbon_efficiency.toFixed(1);
+                    document.getElementById('carbonScoreBar').style.width = `${data.sustainability_scores.carbon_efficiency}%`;
+                    
+                    document.getElementById('interpretabilityScore').textContent = data.sustainability_scores.interpretability.toFixed(1);
+                    document.getElementById('interpretabilityScoreBar').style.width = `${data.sustainability_scores.interpretability}%`;
+                    
+                    if (data.sustainability_scores.fairness) {
+                        document.getElementById('fairnessScoreContainer').classList.remove('d-none');
+                        document.getElementById('fairnessScore').textContent = data.sustainability_scores.fairness.toFixed(1);
+                        document.getElementById('fairnessScoreBar').style.width = `${data.sustainability_scores.fairness}%`;
+                    } else {
+                        document.getElementById('fairnessScoreContainer').classList.add('d-none');
+                    }
+                    
+                    document.getElementById('overallScore').textContent = data.overall_sustainability_score.toFixed(1);
+                    document.getElementById('overallScoreBar').style.width = `${data.overall_sustainability_score}%`;
+                    
+                    // Update energy metrics
+                    document.getElementById('trainingEnergy').textContent = `${data.energy_metrics.training_energy_kwh} kWh`;
+                    document.getElementById('inferenceEnergy').textContent = `${data.energy_metrics.inference_energy_kwh} kWh per inference`;
+                    document.getElementById('renewablePercentage').textContent = `${data.energy_metrics.renewable_percentage}%`;
+                    
+                    // Update carbon metrics
+                    document.getElementById('carbonFootprint').textContent = `${data.energy_metrics.carbon_footprint_kg} kg CO₂eq`;
+                    
+                    // Calculate equivalents
+                    const carbonKg = data.energy_metrics.carbon_footprint_kg;
+                    const carKm = (carbonKg / 0.12).toFixed(1); // Approx. 120g CO2 per km for average car
+                    const lightbulbHours = (carbonKg / 0.0005).toFixed(1); // Approx. 0.5g CO2 per hour for LED bulb
+                    
+                    document.getElementById('carEquivalent').textContent = `${carKm} km of driving`;
+                    document.getElementById('lightbulbEquivalent').textContent = `${lightbulbHours} hours of LED light`;
+                    
+                    // Update performance metrics
+                    if (domain === 'healthcare') {
+                        document.getElementById('regressionMetrics').classList.add('d-none');
+                        document.getElementById('classificationMetrics').classList.remove('d-none');
+                        
+                        document.getElementById('accuracyValue').textContent = (data.performance_metrics.accuracy * 100).toFixed(1) + '%';
+                        document.getElementById('precisionValue').textContent = (data.performance_metrics.precision * 100).toFixed(1) + '%';
+                        document.getElementById('recallValue').textContent = (data.performance_metrics.recall * 100).toFixed(1) + '%';
+                        document.getElementById('f1Value').textContent = (data.performance_metrics.f1_score * 100).toFixed(1) + '%';
+                    } else {
+                        document.getElementById('regressionMetrics').classList.remove('d-none');
+                        document.getElementById('classificationMetrics').classList.add('d-none');
+                        
+                        document.getElementById('rmseValue').textContent = data.performance_metrics.rmse.toFixed(3);
+                        document.getElementById('maeValue').textContent = data.performance_metrics.mae.toFixed(3);
+                        document.getElementById('r2Value').textContent = data.performance_metrics.r_squared.toFixed(3);
+                    }
+                    
+                    // Load charts
+                    loadSustainabilityChart(domain);
+                    loadPerformanceChart(domain);
+                });
+        }
+        
+        // Load sustainability chart
+        function loadSustainabilityChart(domain) {
+            fetch(`/api/generate_plot?type=sustainability&domain=${domain}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('sustainabilityChart').src = `data:image/png;base64,${data.image_data}`;
+                });
+        }
+        
+        // Load performance chart
+        function loadPerformanceChart(domain) {
+            fetch(`/api/generate_plot?type=performance&domain=${domain}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('performanceChart').src = `data:image/png;base64,${data.image_data}`;
+                });
+        }
+        
+        // Set up domain selection buttons
+        document.getElementById('btnClimate').addEventListener('click', function() {
+            setActiveDomain('climate', this);
+        });
+        
+        document.getElementById('btnEnergy').addEventListener('click', function() {
+            setActiveDomain('energy', this);
+        });
+        
+        document.getElementById('btnHealthcare').addEventListener('click', function() {
+            setActiveDomain('healthcare', this);
+        });
+        
+        function setActiveDomain(domain, button) {
+            // Update active button
+            document.querySelectorAll('.btn-group .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+            
+            // Load data for selected domain
+            loadSustainabilityMetrics(domain);
+        }
+        
+        // Load initial data
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSustainabilityMetrics('climate');
+        });
+    </script>
+</body>
+</html>
+
+
+

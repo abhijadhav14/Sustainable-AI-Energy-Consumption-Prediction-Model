@@ -1,0 +1,124 @@
+
+
+/* Custom styles for the dashboard */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.jumbotron {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+}
+
+.card {
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    background-color: rgba(0, 123, 255, 0.1);
+    font-weight: 600;
+}
+
+.progress {
+    height: 0.8rem;
+    border-radius: 0.5rem;
+}
+
+.navbar {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+footer {
+    margin-top: 3rem;
+}
+
+/* Sustainability score colors */
+.score-excellent {
+    color: #28a745;
+}
+
+.score-good {
+    color: #17a2b8;
+}
+
+.score-moderate {
+    color: #ffc107;
+}
+
+.score-poor {
+    color: #dc3545;
+}
+
+/* Domain-specific colors */
+.climate-color {
+    color: #36a2eb;
+}
+
+.energy-color {
+    color: #4bc0c0;
+}
+
+.healthcare-color {
+    color: #ff6384;
+}
+
+/* Metric cards */
+.metric-card {
+    border-left: 4px solid #007bff;
+    background-color: #f8f9fa;
+}
+
+.metric-card.energy {
+    border-left-color: #28a745;
+}
+
+.metric-card.carbon {
+    border-left-color: #dc3545;
+}
+
+.metric-card.fairness {
+    border-left-color: #6f42c1;
+}
+
+.metric-card.interpretability {
+    border-left-color: #fd7e14;
+}
+
+/* Chart containers */
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin-bottom: 1.5rem;
+}
+
+/* Feature importance visualization */
+.feature-bar {
+    height: 30px;
+    margin-bottom: 8px;
+    background-color: #007bff;
+    border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .chart-container {
+        height: 250px;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+    }
+}
