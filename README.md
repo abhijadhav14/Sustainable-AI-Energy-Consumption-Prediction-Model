@@ -129,7 +129,7 @@ cd src/dashboard
 python app.py
 ```
 
-3. Open your web browser and go to http://127.0.0.1:5000/
+3. Open your web browser and go to http://127.0.0.1:5004/
 
 ### Using Core Modules
 
